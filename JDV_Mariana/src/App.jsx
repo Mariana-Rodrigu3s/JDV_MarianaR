@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Square } from './components/Square/SquareIndex'
+import { Square } from './components/Square/Square'
 
 function App() {
   <>

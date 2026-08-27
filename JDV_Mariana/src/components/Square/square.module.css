@@ -1,8 +1,42 @@
-.square{
-
+/* Bloco Principal BEM: Carta do Tabuleiro */
+.square {
+  width: 100%;
+  height: 100px;
+  background-color: var(--color-pink-soft);
+  border: 3px solid var(--color-gold-accent);
+  border-radius: var(--border-radius-card);
+  font-size: 2.5rem;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(212, 175, 55, 0.2);
 }
 
+/* Efeito Hover: Interação Mágica */
+.square:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--color-gold-glow);
+  box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4);
+}
 
-.square-winning{
-    
+/* Modificador BEM: Casa pertencente à combinação vitoriosa */
+.square--winning {
+  background-color: #fff0f5;
+  border-color: var(--color-gold-glow);
+  animation: magicPulse 1.2s infinite alternate;
+}
+
+/* Animação Mágica para a Vitória */
+@keyframes magicPulse {
+  0% {
+    box-shadow: 0 0 10px var(--color-gold-glow);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 22px var(--color-gold-glow), 0 0 35px var(--color-pink-primary);
+    transform: scale(1.06);
+  }
 }
