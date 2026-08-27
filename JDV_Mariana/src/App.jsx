@@ -1,13 +1,9 @@
 import { useState } from 'react'
-// import Board from './components/Board'
-// import Game from './components/Game'
-// import Square from './components/Square'
+import { Square } from './components/Square/SquareIndex'
 
 function App() {
   <>
-  {/* <Square></Square>
-  <Board></Board>
-  <Game></Game> */}
+  <Square></Square>
 
   </>
 }
