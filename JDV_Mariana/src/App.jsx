@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Square } from './components/Square/Square'
+import Game from './components/Game/GameIndex'
 
 function App() {
   return(
     <>
-  <Square></Square>
+  <Game></Game>
 
   </>
   )
