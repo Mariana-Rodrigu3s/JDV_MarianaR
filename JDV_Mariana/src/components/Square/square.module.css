@@ -1,27 +1,50 @@
-:root {
-  --sakura-pink: #f7b5d6;
-  --sakura-border: #e177a1;
-  --gold-border: #e6c682;
-}
-
 .square {
-  width: 80px;
-  height: 80px;
-  margin: 4px;
+  /* Tamanho maior no Desktop */
+  width: 110px;
+  height: 170px;
+  margin: 6px;
+  
+  /* Cores e borda estilo Carta Sakura */
   background-color: #ffffff;
-  border: 3px solid var(--gold-border);
-  border-radius: 6px;
-  font-size: 2rem;
+  border: 4px solid #e6c682;
+  border-radius: 10px;
+  
+  /* Moldura interna dupla da carta */
+  outline: 2px solid #e6c682;
+  outline-offset: -7px;
+  
+  /* Tipografia */
+  font-size: 3rem;
   font-weight: bold;
-  color: var(--sakura-border);
+  color: #e177a1;
+  font-family: 'Georgia', serif;
+  
+  /* Centralização do conteúdo */
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
-  transition: transform 0.1s, background-color 0.2s;
+  
+  /* Sombras e efeitos de profundidade */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0 0 12px rgba(247, 181, 214, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .square:hover {
-  transform: scale(1.02);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(126, 89, 179, 0.3);
+}
+
+/* Responsividade para Telas Pequenas (Celular) */
+@media (max-width: 768px) {
+  .square {
+    width: 24vw;      /* O tamanho se adapta à largura do celular */
+    height: 36vw;     /* Mantém a proporção de carta */
+    max-width: 90px;
+    max-height: 140px;
+    margin: 3px;
+    font-size: 2rem;
+    border-width: 3px;
+    outline-offset: -5px;
+  }
 }

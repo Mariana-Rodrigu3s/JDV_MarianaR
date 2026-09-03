@@ -4,18 +4,18 @@ export default function ScoreBoard({ scores, onReset }) {
   return (
     <div className={styles.scoreboard}>
       <div className={`${styles.score} ${styles['xScore']}`}>
-        <span>Jogador X</span>
+        <span>Jogador 🌸</span>
         <strong>{scores.x}</strong>
       </div>
       <div className={`${styles.score} ${styles['oScore']}`}>
-        <span>Jogador O</span>
+        <span>Jogador 🏹</span>
         <strong>{scores.o}</strong>
       </div>
       <div className={`${styles.score} ${styles['tieScore']}`}>
         <span>Empates</span>
         <strong>{scores.ties}</strong>
       </div>
-      <button className="reset-btn" onClick={onReset}>
+      <button className={styles['resetBtn']} onClick={onReset}>
         Zerar Placar
       </button>
     </div>

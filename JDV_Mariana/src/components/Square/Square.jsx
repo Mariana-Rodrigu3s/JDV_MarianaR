@@ -1,9 +1,11 @@
-import './square.module.css';
+import styles from './square.module.css'
 
 export default function Square({ value, onSquareClick }) {
+
+  const displayValue = value === 'X' ? '🌸' : value === 'O' ? '🏹' : null;
   return (
-    <button className="square" onClick={onSquareClick}>
-      {value}
+    <button className={styles.square} onClick={onSquareClick}>
+      {displayValue}
     </button>
   );
 }

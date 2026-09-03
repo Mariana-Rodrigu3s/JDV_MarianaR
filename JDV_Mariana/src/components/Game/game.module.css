@@ -1,65 +1,82 @@
-.scoreboard {
-  grid-area: score;
+:root {
+  --bg-external: #f9e2f1;
+  --bg-main: #b4a4cf;
+  --clow-purple: #7e59b3;
+  --text-white: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-external);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 1rem;
-  border-radius: 8px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.score {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  min-width: 80px;
-}
-
-.score span {
-  font-size: 0.85rem;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.score strong {
-  font-size: 1.4rem;
-  background-color: #ffffff;
+.game {
+  background-color: var(--bg-main);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-areas:
+    "score score"
+    "board info";
+  gap: 2rem;
+  align-items: start;
+  max-width: 900px;
   width: 100%;
-  text-align: center;
-  border-radius: 4px;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
-  color: #333;
+  box-sizing: border-box;
 }
 
-.xScore {
-  background-color: #f7b5d6;
-  color: #333;
+.gameInfo {
+  grid-area: info;
+  background-color: var(--bg-external);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
 }
 
-.oScore {
-  background-color: #7e59b3;
-  color: #ffffff;
+.gameInfo ol {
+  margin: 0;
+  padding-left: 1.2rem;
 }
 
-.tieScore {
-  background-color: #6c859e;
-  color: #ffffff;
+.gameInfo li {
+  margin-bottom: 0.5rem;
 }
 
-.resetBtn {
-  background-color: #8e44ad;
-  color: #ffffff;
+.gameInfo button {
+  background: var(--bg-main);
+  color: var(--text-white);
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-size: 0.85rem;
+  width: 100%;
+  text-align: left;
   transition: background 0.2s;
 }
 
-.resetBtn:hover {
-  background-color: #732c91;
+.gameInfo button:hover {
+  background: var(--clow-purple);
+}
+
+/* Layout em coluna para Celulares */
+@media (max-width: 768px) {
+  .game {
+    grid-template-areas:
+      "score"
+      "board"
+      "info";
+    padding: 1rem;
+    gap: 1.2rem;
+  }
 }
