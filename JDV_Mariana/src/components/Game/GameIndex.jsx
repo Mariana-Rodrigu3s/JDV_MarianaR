@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Board from '../Board/Board';
-import ScoreBoard from '../ScoreBoard/ScoreBoard'; // Importe o ScoreBoard
+import ScoreBoard from '../ScoreBoard/ScoreBoard';
+import styles from './game.module.css'
 
 function calculateWinner(squares) {
   const lines = [
@@ -61,14 +62,14 @@ export default function Game() {
   });
 
   return (
-    <div className="game">
+    <div className={styles.game}>
       <ScoreBoard scores={scores} onReset={handleResetScores} />
       
-      <div className="game-board">
+      <div className={styles.gameBoard}>
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       
-      <div className="game-info">
+      <div className={styles.gameInfo}>
         <ol>{moves}</ol>
       </div>
     </div>

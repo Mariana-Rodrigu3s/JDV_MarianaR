@@ -1,15 +1,17 @@
+import styles from './score.module.css'
+
 export default function ScoreBoard({ scores, onReset }) {
   return (
-    <div className="scoreboard">
-      <div className="score x-score">
+    <div className={styles.scoreboard}>
+      <div className={`${styles.score} ${styles['xScore']}`}>
         <span>Jogador X</span>
         <strong>{scores.x}</strong>
       </div>
-      <div className="score o-score">
+      <div className={`${styles.score} ${styles['oScore']}`}>
         <span>Jogador O</span>
         <strong>{scores.o}</strong>
       </div>
-      <div className="score tie-score">
+      <div className={`${styles.score} ${styles['tieScore']}`}>
         <span>Empates</span>
         <strong>{scores.ties}</strong>
       </div>
