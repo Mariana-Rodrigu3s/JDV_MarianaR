@@ -33,6 +33,17 @@
 .square:hover {
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 10px 20px rgba(126, 89, 179, 0.3);
+  
+}
+
+.squareFlower{
+  background-color: #e177a1;
+  color: #ffffff;
+}
+
+.squareBow{
+  background-color: #eee0c2;
+  color: #ffffff;
 }
 
 /* Responsividade para Telas Pequenas (Celular) */

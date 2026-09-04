@@ -1,82 +1,110 @@
-:root {
-  --bg-external: #f9e2f1;
-  --bg-main: #b4a4cf;
-  --clow-purple: #7e59b3;
-  --text-white: #ffffff;
+/* Container Principal do Jogo */
+.game {
+  background-color: #B4A4CF; /* Roxo lilás da tela principal */
+  width: 95%;
+  max-width: 1000px;
+  min-height: 600px;
+  padding: 2rem;
+  border-radius: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: 'Georgia', serif;
 }
 
-body {
-  margin: 0;
-  padding: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-external);
+/* Área Interna: Tabuleiro + Painel Lateral */
+.gameContent {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-
-.game {
-  background-color: var(--bg-main);
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  display: grid;
-  grid-template-areas:
-    "score score"
-    "board info";
-  gap: 2rem;
-  align-items: start;
-  max-width: 900px;
+  gap: 3.5rem;
   width: 100%;
-  box-sizing: border-box;
 }
 
+/* Tabuleiro Centralizado */
+.gameBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Painel de Histórico (JOGADAS) */
 .gameInfo {
-  grid-area: info;
-  background-color: var(--bg-external);
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
-  max-height: 300px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameInfo::before {
+  content: 'JOGADAS';
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .gameInfo ol {
+  background: rgba(255, 255, 255, 0.25);
+  width: 230px;
+  height: 380px;
   margin: 0;
-  padding-left: 1.2rem;
+  padding: 1rem 1rem 1rem 2.5rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  list-style-type: decimal;
+  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .gameInfo li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  color: #ffffff;
 }
 
 .gameInfo button {
-  background: var(--bg-main);
-  color: var(--text-white);
-  border: none;
-  padding: 0.5rem 0.8rem;
+  background-color: #ffffff;
+  border: 2px solid #e6c682;
+  color: #333333;
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.85rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
   width: 100%;
   text-align: left;
-  transition: background 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
 }
 
 .gameInfo button:hover {
-  background: var(--clow-purple);
+  background-color: #f7b5d6;
+  color: #ffffff;
+  border-color: #f7b5d6;
+  transform: translateX(3px);
 }
 
-/* Layout em coluna para Celulares */
+/* Responsividade (Celular / Tablet) */
 @media (max-width: 768px) {
   .game {
-    grid-template-areas:
-      "score"
-      "board"
-      "info";
     padding: 1rem;
-    gap: 1.2rem;
+    gap: 1.5rem;
+  }
+
+  .gameContent {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .gameInfo ol {
+    width: 280px;
+    height: 160px;
   }
 }

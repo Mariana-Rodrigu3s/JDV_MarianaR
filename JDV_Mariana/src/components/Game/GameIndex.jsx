@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 import Board from '../Board/Board';
 import ScoreBoard from '../ScoreBoard/ScoreBoard';
-import styles from './game.module.css'
-
+import styles from './game.module.css';
 
 function calculateWinner(squares) {
   const lines = [
@@ -22,7 +22,7 @@ function calculateWinner(squares) {
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
-  const [scores, setScores] = useState({ x: 0, o: 0, ties: 0 }); // Estado do Placar
+  const [scores, setScores] = useState({ x: 0, o: 0, ties: 0 });
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
@@ -32,21 +32,48 @@ export default function Game() {
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
 
-    // Checa se o jogo terminou nessa jogada para computar o ponto
     const winner = calculateWinner(nextSquares);
     const isDraw = !winner && nextSquares.every((square) => square !== null);
 
     if (winner === 'X') {
-      setScores((prev) => ({ ...prev, x: prev.x + 1 }));
+      const newXScore = scores.x + 1;
+      if (newXScore >= 5) {
+        showVictoryAlert('Jogador 🌸');
+      } else {
+        setScores((prev) => ({ ...prev, x: newXScore }));
+      }
     } else if (winner === 'O') {
-      setScores((prev) => ({ ...prev, o: prev.o + 1 }));
+      const newOScore = scores.o + 1;
+      if (newOScore >= 5) {
+        showVictoryAlert('Jogador 🏹');
+      } else {
+        setScores((prev) => ({ ...prev, o: newOScore }));
+      }
     } else if (isDraw) {
       setScores((prev) => ({ ...prev, ties: prev.ties + 1 }));
     }
   }
 
-  function handleResetScores() {
+  // Alerta customizado com SweetAlert2
+  function showVictoryAlert(winnerName) {
+    Swal.fire({
+      title: 'Parabéns!',
+      text: `${winnerName} atingiu 5 pontos e venceu a partida!`,
+      icon: 'success',
+      confirmButtonText: 'Recomeçar Jogo',
+      confirmButtonColor: '#9B68D5',
+      background: '#F2E3FA',
+      color: '#333333',
+    }).then(() => {
+      resetFullGame();
+    });
+  }
+
+  // Zera o placar e o tabuleiro simultaneamente
+  function resetFullGame() {
     setScores({ x: 0, o: 0, ties: 0 });
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
   }
 
   function jumpTo(nextMove) {
@@ -64,14 +91,16 @@ export default function Game() {
 
   return (
     <div className={styles.game}>
-      <ScoreBoard scores={scores} onReset={handleResetScores} />
+      <ScoreBoard scores={scores} onReset={resetFullGame} />
       
-      <div className={styles.gameBoard}>
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-      </div>
-      
-      <div className={styles.gameInfo}>
-        <ol>{moves}</ol>
+      <div className={styles.gameContent}>
+        <div className={styles.gameBoard}>
+          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        </div>
+        
+        <div className={styles.gameInfo}>
+          <ol>{moves}</ol>
+        </div>
       </div>
     </div>
   );
